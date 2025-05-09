@@ -1,7 +1,7 @@
 # Android CI/CD GitHub Actions Demo
 This repository contains the implementation of a test task for setting up a CI/CD pipeline for an Android project using GitHub Actions.
 
-#📋 Task Description
+# 📋 Task Description
 
 Configure GitHub Actions so that on every push to the main branch:
 
@@ -9,7 +9,7 @@ A release APK is built.
 A new GitHub Release is created automatically.
 The generated APK is uploaded to that release.
 
-#Requirements:
+# Requirements:
 Trigger workflow on push to main
 Set up Java and Android SDK
 Run ./gradlew assembleRelease to build APK
@@ -18,11 +18,11 @@ versionName and versionCode from build.gradle
 or date and commit hash
 Use actions/create-release and actions/upload-release-asset to publish APK
 
-#Optional:
+# Optional:
 Extract versionName from build.gradle
 Generate a changelog using git log
 
-#✅ What was implemented
+# ✅ What was implemented
 
 ✅ CI/CD pipeline runs on every push to main
 ✅ Generates a versioned tag using date and commit hash
@@ -31,4 +31,4 @@ Generate a changelog using git log
 ✅ Generates a CHANGELOG.md file using recent commit messages (git log)
 ✅ Also uploads the changelog to the GitHub Release
 
-#⚠️ For demonstration purposes, the build step uses a dummy APK file instead of a real ./gradlew assembleRelease command. Replacing it with actual project build is straightforward.
+# ⚠️ For demonstration purposes, the build step uses a dummy APK file instead of a real ./gradlew assembleRelease command. Replacing it with actual project build is straightforward.
