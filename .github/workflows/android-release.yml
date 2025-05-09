@@ -32,7 +32,7 @@ jobs:
       - name: Create changelog
         run: |
           echo "Generating changelog..."
-          git log --pretty=format:"* %s" --no-merges --date=short > CHANGELOG.md
+          git log --pretty=format:"* %h %ad %s" --no-merges --date=short > CHANGELOG.md
           cat CHANGELOG.md
 
       - name: Create dummy APK
