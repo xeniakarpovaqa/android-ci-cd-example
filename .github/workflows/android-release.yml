@@ -1,0 +1,50 @@
+name: Build & Release APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Grant execute permission for Gradle
+        run: chmod +x ./gradlew
+
+      - name: Fake build step
+        run: echo "Pretend to run ./gradlew assembleRelease"
+
+      - name: Generate dummy APK
+        run: |
+          mkdir -p app/build/outputs/apk/release/
+          echo "This is a dummy APK file." > app/build/outputs/apk/release/app-release.apk
+
+      - name: Set version tag
+        run: |
+          echo "TAG_NAME=v$(date +'%Y-%m-%d')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG_NAME }}
+          name: Release ${{ env.TAG_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload APK
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
